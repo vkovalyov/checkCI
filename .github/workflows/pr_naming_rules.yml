@@ -1,4 +1,4 @@
-name: PR naming rules
+name: naming rules
 
 on:
   pull_request:
