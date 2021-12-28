@@ -38,7 +38,7 @@ jobs:
       - name: Run lint
         run: flutter analyze
   test-report:
-    - name: flutter test
+     name: flutter test
       run: flutter test --machine > test.json
     - name: flutter test
       run: flutter test --coverage
