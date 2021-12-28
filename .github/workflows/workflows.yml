@@ -7,6 +7,7 @@ on:
 
 jobs:
   branch-naming-rules:
+    name: branch naming
     runs-on: ubuntu-latest
     steps:
       - uses: deepakputhraya/action-branch-name@master
@@ -16,7 +17,7 @@ jobs:
           max_length: 50
 
   lint:
-    name: Check code style
+    name: code style
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source code
