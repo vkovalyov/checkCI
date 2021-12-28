@@ -29,9 +29,16 @@ jobs:
         run: flutter pub get
       - name: Run lint
         run: flutter analyze
-
-  build-web:
+  run-tests:
     needs: lint
+    name: Run tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run tests
+        run: |
+          flutter test
+  build-web:
+    needs: run-tests
     name: Build Web
     runs-on: ubuntu-latest
     steps:
