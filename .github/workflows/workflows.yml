@@ -23,6 +23,13 @@ jobs:
         with:
           regex: 'ITRAPP-\d+: [ \da-zA-Z]+'
           max_length: 50
+  commit-naming-rules:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: deepakputhraya/action-commit-title@master
+        with:
+          regex: 'ITRAPP-\d+: [ \da-zA-Z]+'
+          max_length: 50
 
   lint:
     name: Check code style
