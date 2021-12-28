@@ -4,8 +4,6 @@ on:
   pull_request:
     branches:
       - "main"
-    paths-ignore:
-      - ".vscode/**"
 
 jobs:
   branch-naming-rules:
@@ -45,16 +43,3 @@ jobs:
       - uses: subosito/flutter-action@v1
       - run: flutter pub get
       - run: flutter build web --release
-  addReviewers: true
-  numberOfReviewers: 1
-  reviewers:
-    - waldmari
-
-  addAssignees: true
-  assignees:
-    - pvsaintpe
-  numberOfAssignees: 1
-
-  skipKeywords:
-    - wip
-    - draft
