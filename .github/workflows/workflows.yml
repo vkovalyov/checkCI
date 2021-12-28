@@ -18,3 +18,5 @@ jobs:
         uses: subosito/flutter-action@v1
         with:
           channel: 'stable'
+      - name: Get packages in a Flutter project
+        run: flutter pub get
