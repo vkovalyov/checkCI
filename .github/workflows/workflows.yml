@@ -7,9 +7,9 @@ on:
 
 jobs:
   branch-naming-rules:
-    needs: ../pr_naming_rules.yml
     name: branch naming
     runs-on: ubuntu-latest
+    if: github.event.pr-naming-rules
     steps:
       - uses: deepakputhraya/action-branch-name@master
         with:
