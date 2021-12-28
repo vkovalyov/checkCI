@@ -9,7 +9,6 @@ jobs:
   branch-naming-rules:
     name: branch naming
     runs-on: ubuntu-latest
-    if: github.event.pr-naming-rules
     steps:
       - uses: deepakputhraya/action-branch-name@master
         with:
