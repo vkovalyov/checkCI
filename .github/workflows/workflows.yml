@@ -37,4 +37,11 @@ jobs:
         run: flutter pub get
       - name: Run lint
         run: flutter analyze
-
+  build-web:
+    name: Build Web
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: subosito/flutter-action@v1
+      - run: flutter pub get
+      - run: flutter build web --release
