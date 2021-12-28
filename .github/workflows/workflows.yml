@@ -2,7 +2,7 @@ name: Verify PR
 
 on:
   workflow_run:
-    workflows: ["Run Tests"]
+    workflows: ["PR naming ruless"]
     branches: [main]
     types:
       - completed
