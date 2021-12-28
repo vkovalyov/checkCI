@@ -30,6 +30,7 @@ jobs:
       - name: Run lint
         run: flutter analyze
   build-web:
+    needs: Check code style
     name: Build Web
     runs-on: ubuntu-latest
     steps:
