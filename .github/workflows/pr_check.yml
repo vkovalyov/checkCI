@@ -1,0 +1,50 @@
+name: PR check
+
+on:
+  workflow_run:
+    workflows: ["PR naming rules"]
+    types:
+      - completed
+jobs:
+  branch-naming-rules:
+    name: branch naming
+    runs-on: ubuntu-latest
+    steps:
+      - uses: deepakputhraya/action-branch-name@master
+        with:
+          regex: 'ITRAPP-\d+'
+          ignore: master
+          max_length: 50
+  lint:
+    name: code style
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v2
+      - name: Install Flutter
+        uses: subosito/flutter-action@v1
+        with:
+          channel: 'stable'
+      - name: Get packages in a Flutter project
+        run: flutter pub get
+      - name: Run lint
+        run: flutter analyze
+  run-tests:
+    needs: lint
+    name: Run tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: subosito/flutter-action@v1
+      - name: Run tests
+        run: |
+          flutter test
+  build-web:
+    needs: run-tests
+    name: Build Web
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: subosito/flutter-action@v1
+      - run: flutter pub get
+      - run: flutter build web --release
