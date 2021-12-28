@@ -21,7 +21,7 @@ jobs:
     steps:
       - uses: deepakputhraya/action-pr-title@master
         with:
-          regex: 'ITRAPP-\d+: [ \da-zA-Z]+'
+          regex: 'ITRAPP-\d+'
           max_length: 50
   lint:
     name: Check code style
