@@ -1,4 +1,4 @@
-name: Check PR
+name: Verify PR
 
 on:
   pull_request:
@@ -8,13 +8,6 @@ on:
       - ".vscode/**"
 
 jobs:
-  block-fixup:
-    runs-on: ubuntu-18.04
-
-    steps:
-      - uses: actions/checkout@v2.0.0
-      - name: Block Fixup Commit Merge
-        uses: 13rac1/block-fixup-merge-action@v2.0.0
   branch-naming-rules:
     runs-on: ubuntu-latest
     steps:
@@ -52,3 +45,13 @@ jobs:
         run: flutter pub get
       - name: Run lint
         run: flutter analyze
+  - name: flutter test
+    run: flutter test --machine > test.json
+  - name: flutter test
+    run: flutter test --coverage
+    if: success() || failure()
+  - uses: ueki-tomohiro/flutter-test-action@v1
+    with:
+      machinPath: test.json
+      coveragePath: coverage/lcov.info
+    if: success() || failure()
