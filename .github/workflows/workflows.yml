@@ -1,8 +1,12 @@
 name: Verify PR
 
 on:
-  workflows: ["PR naming rules"]
-  types: [completed]
+  workflow_run:
+    workflows: ["PR naming rules"]
+    branches: [main]
+    types:
+      - completed
+      - requested
 #  pull_request:
 #    branches:
 #      - "main"
