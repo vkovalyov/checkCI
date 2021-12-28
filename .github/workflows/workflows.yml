@@ -2,7 +2,8 @@ name: Verify PR
 
 on:
   workflow_run:
-    workflows: ["naming rules"]
+    workflows: ["Run Tests"]
+    branches: [main]
     types:
       - completed
 #  pull_request:
