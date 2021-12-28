@@ -3,7 +3,6 @@ name: Verify PR
 on:
   workflow_run:
     workflows: ["PR naming rules"]
-    branches: [main]
     types:
       - completed
       - requested
