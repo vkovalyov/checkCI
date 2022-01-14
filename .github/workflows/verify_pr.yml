@@ -10,9 +10,9 @@ jobs:
   pr-naming-rules:
     runs-on: ubuntu-latest
     steps:
-      - name: Step that prints name of pull request's base branch
         env:
           PR_NUMBER: ${{ github.event.number }}
+          - name: Step that prints name of pull request's base branch
           run: |
             echo "${{ github.event.number }}"
         if: github.event_name == 'pull_request'
