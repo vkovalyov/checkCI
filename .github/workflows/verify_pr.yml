@@ -10,20 +10,13 @@ jobs:
   pr-naming-rules:
     runs-on: ubuntu-latest
     steps:
-      - name: Step that prints name of pull request's base branch
+      - name: Pull request's name is
         run: |
-          echo "Pull request's base branch is: ${{ github.event.pull_request.head.ref }}"
-        env:
-          PR_NUMBER: ${{ github.event.number }}
-
-      - name: if in progress ?
-        if: github.event.pull_request.head.ref != 'ITRAPP-1234'
+          echo ": ${{ github.event.pull_request.head.ref }}"
+      - name: if pr in progress ?
+        if: contains('${{ github.event.pull_request.head.ref }}', 'LOL')
         #if: contains('${{ github.event.pull_request.head.ref }}', 'IN-PROGRESS')
         run: exit 1
-#        if: contains('${{ github.event.pull_request.head.ref }}', 'IN-PROGRESS')
-#      - name: PR IN-PROGRESS
-#        run: exit 1
-
 
   branch-naming-rules:
     needs: pr-naming-rules
