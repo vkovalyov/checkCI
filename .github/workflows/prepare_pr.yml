@@ -4,6 +4,7 @@ on:
   pull_request:
     types:
       - opened
+
 jobs:
   triage:
     if: >-
@@ -16,5 +17,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR: ${{ github.event.pull_request.html_url }}
         run: |
-          gh pr edit $PR --add-label 'invalid'
-          gh pr comment $PR --body
+          gh pr edit $PR --add-label 'need approve'
+          gh pr comment $PR --body 'check this PR'
+
