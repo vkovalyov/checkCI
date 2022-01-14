@@ -1,4 +1,4 @@
-name: CI build
+name: CIbuild
 
 on:
   pull_request:
