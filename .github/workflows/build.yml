@@ -14,6 +14,4 @@ jobs:
         with:
           regex: 'ITRAPP-\d+'
           max_length: 50
-      - uses: vkovalyov/checkCI/.github/workflows/notify.yml@main
-        with:
-          username: admin
+    uses: vkovalyov/checkCI/.github/workflows/notify.yml@main
