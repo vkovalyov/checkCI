@@ -6,6 +6,11 @@ on:
       - "main"
 
 jobs:
+  reusable_workflow_job:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: ./.github/actions/my-action@v1
   branch-naming-rules:
     name: branch naming
     runs-on: ubuntu-latest
