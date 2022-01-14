@@ -2,8 +2,9 @@ name: CI notify
 
 on:
   workflow_run:
-    workflows: [CIbuild]
+    workflows: ["CIbuild"]
     types: [completed]
+
 
 jobs:
   notify:
