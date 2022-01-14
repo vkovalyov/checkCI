@@ -10,6 +10,6 @@ jobs:
   job1:
     uses: vkovalyov/checkCI/.github/workflows/notify.yml@main
 
-
+#ccc
 #  call-workflow:
 #    uses: octo-org/example-repo/.github/workflows/workflow-A.yml@v1
