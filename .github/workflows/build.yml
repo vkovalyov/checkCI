@@ -15,8 +15,8 @@ jobs:
         with:
           regex: 'ITRAPP-\d+'
           max_length: 50
-      if: ${{ success() }}
-      uses: vkovalyov/checkCI/.github/workflows/notify.yml@main
+ #     if: ${{ success() }}
+ #     uses: vkovalyov/checkCI/.github/workflows/notify.yml@main
 #jobs:
 #  job1:
 #    uses: vkovalyov/checkCI/.github/workflows/notify.yml@main
