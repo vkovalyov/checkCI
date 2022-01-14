@@ -13,7 +13,7 @@ jobs:
       - name: Pull request's name is
         run: |
           echo ": ${{ github.event.pull_request.head.ref }}"
-      - name: if pr in progress ?
+
         cond: "contains(github.event.pull_request.head.ref, 'IN-PROGRESS')"
         if_true: '0'  # string value
         if_false: '1'
