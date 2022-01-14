@@ -10,17 +10,25 @@ on:
 jobs:
   pr-naming-rules:
     runs-on: ubuntu-latest
-    if: "!contains(github.event.pull_request.head.ref, 'IN-PROGRESS')"
     steps:
-      - name: Pull request's name is
-        run: |
-          echo ": ${{ github.event.pull_request.head.ref }}"
-      - name: Pull request's number is
-        run: |
-          echo ": ${{ github.event.number }}"
-      - name: Pull request's number is ??
-        run: |
-          echo ": ${{ github.event.name }}"
+      - uses: deepakputhraya/action-pr-title@master
+        with:
+          regex: 'ITRAPP-\d+'
+          disallowed_prefixes: '[IN-PROGRESS]' # title should not start with the given prefix
+          max_length: 50
+#  pr-naming-rules:
+#    runs-on: ubuntu-latest
+#    if: "!contains(github.event.pull_request.head.ref, 'IN-PROGRESS')"
+#    steps:
+#      - name: Pull request's name is
+#        run: |
+#          echo ": ${{ github.event.pull_request.head.ref }}"
+#      - name: Pull request's number is
+#        run: |
+#          echo ": ${{ github.event.number }}"
+#      - name: Pull request's number is ??
+#        run: |
+#          echo ": ${{ github.event.name }}"
 
 
   branch-naming-rules:
