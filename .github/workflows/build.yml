@@ -1,0 +1,14 @@
+name: CI build
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+    branches:
+      - "main"
+
+jobs:
+  job1:
+    uses: vkovalyov/checkCI/.github/workflows/notify.yml@main
+
+#  call-workflow:
+#    uses: octo-org/example-repo/.github/workflows/workflow-A.yml@v1
