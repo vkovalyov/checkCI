@@ -2,8 +2,8 @@ name: Verify PR
 
 on:
   pull_request:
-    #types: [opened, edited,synchronize ,reopened]
-    types: [push, pull_request,edited]
+    types: [opened, edited,synchronize ,reopened]
+    #types: [push, pull_request,edited]
     branches:
       ["main", "develop"]
 
@@ -15,6 +15,11 @@ jobs:
       - name: Pull request's name is
         run: |
           echo ": ${{ github.event.pull_request.head.ref }}"
+      - name: Pull request's number is
+        run: |
+          echo ": ${{ github.event.number }}"
+
+
 
   branch-naming-rules:
     needs: pr-naming-rules
