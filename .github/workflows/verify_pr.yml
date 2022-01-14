@@ -9,9 +9,9 @@ name: Verify PR
 
 on:
   push:
-    branches: [ staging ]
+    branches: [ main ]
   pull_request:
-    branches: [ staging ]
+    branches: [ main ]
 
 jobs:
   pr-naming-rules:
