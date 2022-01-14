@@ -6,7 +6,6 @@ on:
       username:
         required: false
         type: string
-
 jobs:
   notify:
     runs-on: ubuntu-latest
