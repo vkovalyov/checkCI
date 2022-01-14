@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Step that prints name of pull request's base branch
         run: |
-          echo "Pull request's base branch is: ${{ github.event.number }}"
+          echo "Pull request's base branch is: ${{ github.event.name }}"
         env:
           PR_NUMBER: ${{ github.event.number }}
 
