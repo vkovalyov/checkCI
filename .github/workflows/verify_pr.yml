@@ -9,17 +9,15 @@ on:
 jobs:
   pr-naming-rules:
     runs-on: ubuntu-latest
+    if: "contains(github.event.pull_request.head.ref, 'SKIP SCRIPTS')"
     steps:
       - name: Pull request's name is
         run: |
           echo ": ${{ github.event.pull_request.head.ref }}"
 
-        cond: contains(github.event.pull_request.head.ref, 'IN-PROGRESS')
-        if_true: '0'  # string value
-        if_false: '1'
         #if: "contains(github.event.head_commit.message, 'CONDITION 1 MSG')"
-        #if: contains('${{ github.event.pull_request.head.ref }}', 'IN-PROGRESS')
-        #run: exit 1
+        if: contains('${{ github.event.pull_request.head.ref }}', 'IN-PROGRESS')
+        
 
   branch-naming-rules:
     needs: pr-naming-rules
