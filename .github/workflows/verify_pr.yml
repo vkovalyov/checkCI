@@ -11,10 +11,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Step that prints name of pull request's base branch
-        run: |
-          echo "Pull request's base branch is: ${BASE_BRANCH}"
         env:
-          BASE_BRANCH: ${{ github.base_ref }}
+          PR_NUMBER: ${{ github.event.number }}
+          run: |
+            echo "${{ github.event.number }}"
         if: github.event_name == 'pull_request'
 
   branch-naming-rules:
