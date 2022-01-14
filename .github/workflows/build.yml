@@ -1,20 +1,14 @@
 name: CI build
 
 on:
-  pull_request:
-    types: [opened, edited, synchronize, reopened]
-    branches:
-      - "main"
+  workflow_dispatch:
 
 jobs:
-  pr-naming-rules:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: deepakputhraya/action-pr-title@master
-        with:
-          regex: 'ITRAPP-\d+'
-          max_length: 50
+  job1:
+    uses: octo-org/example-repo/.github/workflows/called-workflow.yml@v1
 
-  start-next-job:
+  job2:
     runs-on: ubuntu-latest
-    uses: vkovalyov/checkCI/.github/workflows/notify.yml
+    needs: job1
+    steps:
+      - run: echo ${{ needs.job1.outputs.firstword }} ${{ needs.job1.outputs.secondword }}
