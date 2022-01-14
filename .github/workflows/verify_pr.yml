@@ -1,20 +1,32 @@
 name: Verify PR
 
-#on:
-#  pull_request:
-#    types: [opened, edited,synchronize ,reopened]
-    #types: [push, pull_request,edited]
 #    branches:
 #      ["main", "develop"]
-
 on:
+  #  pull_request:
+  #    types: [opened, edited,synchronize ,reopened]
   push:
     branches: [ main ]
   pull_request:
+    types: [opened, edited,synchronize ,reopened]
     branches: [ main ]
 
 jobs:
-
+  label_issue:
+    runs-on: ubuntu-latest
+    steps:
+      - env:
+          GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}
+          ISSUE_URL: ${{ github.event.issue.html_url }}
+        run: |
+          gh issue edit $ISSUE_URL --add-label "triage"
+  cancel-previous-workflow-this-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.9.1
+        with:
+          access_token: ${{ github.token }}
   pr-naming-rules:
     runs-on: ubuntu-latest
     steps:
@@ -23,6 +35,7 @@ jobs:
           regex: 'ITRAPP-\d+'
           disallowed_prefixes: '[IN-PROGRESS]'
           max_length: 50
+
 
   branch-naming-rules:
     needs: pr-naming-rules
@@ -34,6 +47,7 @@ jobs:
           regex: 'ITRAPP-\d+'
           ignore: master
           max_length: 50
+
   lint:
     needs: branch-naming-rules
     name: code style
@@ -49,6 +63,7 @@ jobs:
         run: flutter pub get
       - name: Run lint
         run: dart analyze
+
   run-tests:
     needs: lint
     name: Run tests
@@ -58,7 +73,15 @@ jobs:
       - uses: subosito/flutter-action@v1
       - name: Run tests
         run: |
-          flutter test
+          flutter test --coverage --no-sound-null-safety;
+      - name: Upload reports to codecov
+        env:
+          CODECOV_TOKEN: ${{secrets.CODECOV_TOKEN}}
+        run: |
+          curl -Os https://uploader.codecov.io/latest/linux/codecov
+          chmod +x codecov
+          ./codecov -t ${CODECOV_TOKEN}
+
   build-server:
     needs: run-tests
     name: Build Server
