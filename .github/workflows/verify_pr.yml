@@ -18,6 +18,7 @@ jobs:
 
         if: github.event_name == 'pull_request'
 
+
   branch-naming-rules:
     needs: pr-naming-rules
     name: branch naming
