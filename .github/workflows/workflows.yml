@@ -8,7 +8,7 @@ on:
 
 jobs:
   pr-naming:
-    uses: .github/workflows/pr_naming_rules.yml@main
+    uses: vkovalyov/checkCI/.github/workflows/pr_naming_rules.yml@main
     secrets:
       SOME_SECRET: ${{ secrets.SOME_SECRET }}
 
