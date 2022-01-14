@@ -14,5 +14,5 @@ jobs:
         with:
           regex: 'ITRAPP-\d+'
           max_length: 50
-      - uses: vkovalyov/checkCI/.github/workflows/workflow.yml@main
+      - uses: Verify PR
        #my-org/some-repo/.github/workflows/build.yml@main
