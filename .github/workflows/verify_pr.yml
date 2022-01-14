@@ -1,6 +1,5 @@
 name: Verify PR
 
-
 #    branches:
 #      ["main", "develop"]
 on:
@@ -66,7 +65,14 @@ jobs:
       - uses: subosito/flutter-action@v1
       - name: Run tests
         run: |
-          flutter test
+          flutter test --coverage --no-sound-null-safety;
+      - name: Upload reports to codecov
+        env:
+          CODECOV_TOKEN: ${{secrets.CODECOV_TOKEN}}
+        run: |
+          curl -Os https://uploader.codecov.io/latest/linux/codecov
+          chmod +x codecov
+          ./codecov -t ${CODECOV_TOKEN}
 
   build-server:
     needs: run-tests
