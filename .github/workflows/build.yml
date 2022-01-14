@@ -8,7 +8,7 @@ on:
 
 jobs:
   job1:
-    uses: vkovalyov/checkCI/.github/workflows/notify.yml@v1
+    uses: vkovalyov/checkCI/.github/workflows/notify.yml@main
 
 #  call-workflow:
 #    uses: octo-org/example-repo/.github/workflows/workflow-A.yml@v1
