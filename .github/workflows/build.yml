@@ -16,9 +16,9 @@ jobs:
           regex: 'ITRAPP-\d+'
           max_length: 50
 
-  after-success-pr-name:
-    needs: pr-naming-rules
-    uses: vkovalyov/checkCI/.github/workflows/notify.yml@main
+#  after-success-pr-name:
+#    needs: pr-naming-rules
+#    uses: vkovalyov/checkCI/.github/workflows/notify.yml@main
 
  #     if: ${{ success() }}
  #     uses: vkovalyov/checkCI/.github/workflows/notify.yml@main
