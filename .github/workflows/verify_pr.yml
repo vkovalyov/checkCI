@@ -13,7 +13,7 @@ on:
   pull_request:
     branches: [ main ]
 jobs:
-  cancel previous workflow  this pr:
+  cancel-previous-workflow-this-pr:
     runs-on: ubuntu-latest
     steps:
       - name: Cancel Previous Runs
