@@ -6,7 +6,6 @@ on:
       - opened
 
 jobs:
-
   triage:
     if: >-
       github.event.pull_request.user.login != 'octobot' &&
