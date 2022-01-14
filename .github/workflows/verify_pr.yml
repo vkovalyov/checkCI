@@ -17,8 +17,9 @@ jobs:
           PR_NUMBER: ${{ github.event.number }}
 
         if: contains('${{ github.event.pull_request.head.ref }}', 'IN-PROGRESS')
-            - name: PR IN-PROGRESS
-            run: exit 1
+      - name: PR IN-PROGRESS
+        run: exit 1
+
 
   branch-naming-rules:
     needs: pr-naming-rules
