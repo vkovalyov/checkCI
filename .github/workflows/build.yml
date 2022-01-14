@@ -17,5 +17,4 @@ jobs:
 
   start-next-job:
     runs-on: ubuntu-latest
-    steps:
-      - uses: vkovalyov/checkCI/.github/workflows/notify.yml@main
+    uses: vkovalyov/checkCI/.github/workflows/notify.yml@main
