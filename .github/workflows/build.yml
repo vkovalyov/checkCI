@@ -9,6 +9,8 @@ on:
 jobs:
   job1:
     uses: vkovalyov/checkCI/.github/workflows/notify.yml@main
-
+    with:
+      username: mona
+#ccc
 #  call-workflow:
 #    uses: octo-org/example-repo/.github/workflows/workflow-A.yml@v1
