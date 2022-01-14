@@ -2,18 +2,18 @@ name: Verify PR
 
 on:
   pull_request:
-    types: [opened, edited,push ,reopened]
+    types: [opened, edited,synchronize ,reopened]
     branches:
       ["main", "develop"]
 
 jobs:
   pr-naming-rules:
     runs-on: ubuntu-latest
-    if: "!contains(github.event.pull_request.head.ref, 'IN-PROGRESS')"
+    if: "!contains(github.event.pull_request.head, 'IN-PROGRESS')"
     steps:
       - name: Pull request's name is
         run: |
-          echo ": ${{ github.event.pull_request.head.ref }}"
+          echo ": ${{ github.event.pull_request.head }}"
 
   branch-naming-rules:
     needs: pr-naming-rules
