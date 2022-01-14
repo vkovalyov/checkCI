@@ -18,7 +18,9 @@ jobs:
       - name: Pull request's number is
         run: |
           echo ": ${{ github.event.number }}"
-
+      - name: Pull request's number is ??
+        run: |
+          echo ": ${{ github.event.name }}"
 
 
   branch-naming-rules:
