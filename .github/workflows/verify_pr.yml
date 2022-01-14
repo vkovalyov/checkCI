@@ -2,7 +2,7 @@ name: Verify PR
 
 on:
   pull_request:
-    types: [opened, edited, synchronize, reopened]
+    types: [opened, edited, reopened]
     branches:
       ["main", "develop"]
 
@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Step that prints name of pull request's base branch
         run: |
-          echo "Pull request's base branch is: ${{ github.event.name }}"
+          echo "Pull request's base branch is: ${{ github.event.pull_request.head.ref }}"
         env:
           PR_NUMBER: ${{ github.event.number }}
 
