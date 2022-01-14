@@ -1,13 +1,19 @@
 name: Verify PR
 
 on:
-  workflow_call:
-    secrets:
-      token:
-        required: true
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+    branches:
+      - "main"
 
 jobs:
+  pr-naming:
+    uses: vkovalyov/checkCI/.github/workflows/build.yml@main
+    secrets:
+      SOME_SECRET: ${{ secrets.SOME_SECRET }}
+
   branch-naming-rules:
+    needs: pr-naming
     name: branch naming
     runs-on: ubuntu-latest
     steps:
