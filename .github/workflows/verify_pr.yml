@@ -1,11 +1,17 @@
 name: Verify PR
 
-on:
-  pull_request:
-    types: [opened, edited,synchronize ,reopened]
+#on:
+#  pull_request:
+#    types: [opened, edited,synchronize ,reopened]
     #types: [push, pull_request,edited]
-    branches:
-      ["main", "develop"]
+#    branches:
+#      ["main", "develop"]
+
+on:
+  push:
+    branches: [ staging ]
+  pull_request:
+    branches: [ staging ]
 
 jobs:
   pr-naming-rules:
@@ -14,22 +20,8 @@ jobs:
       - uses: deepakputhraya/action-pr-title@master
         with:
           regex: 'ITRAPP-\d+'
-          disallowed_prefixes: '[IN-PROGRESS]' # title should not start with the given prefix
+          disallowed_prefixes: '[IN-PROGRESS]'
           max_length: 50
-#  pr-naming-rules:
-#    runs-on: ubuntu-latest
-#    if: "!contains(github.event.pull_request.head.ref, 'IN-PROGRESS')"
-#    steps:
-#      - name: Pull request's name is
-#        run: |
-#          echo ": ${{ github.event.pull_request.head.ref }}"
-#      - name: Pull request's number is
-#        run: |
-#          echo ": ${{ github.event.number }}"
-#      - name: Pull request's number is ??
-#        run: |
-#          echo ": ${{ github.event.name }}"
-
 
   branch-naming-rules:
     needs: pr-naming-rules
