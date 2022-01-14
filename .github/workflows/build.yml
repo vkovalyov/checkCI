@@ -17,8 +17,7 @@ jobs:
           max_length: 50
 
   after-success-pr-name:
-    needs: branch-naming-rules
-    name: start check project
+    needs: pr-naming-rules
     uses: vkovalyov/checkCI/.github/workflows/notify.yml@main
 
  #     if: ${{ success() }}
