@@ -17,7 +17,8 @@ jobs:
           PR_NUMBER: ${{ github.event.number }}
 
       - name: if in progress ?
-        if: contains('${{ github.event.pull_request.head.ref }}', 'IN-PROGRESS')
+        if: github.event.pull_request.head.ref != 'ITRAPP-1234'
+        #if: contains('${{ github.event.pull_request.head.ref }}', 'IN-PROGRESS')
         run: exit 1
 #        if: contains('${{ github.event.pull_request.head.ref }}', 'IN-PROGRESS')
 #      - name: PR IN-PROGRESS
