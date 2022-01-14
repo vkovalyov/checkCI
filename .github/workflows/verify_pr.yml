@@ -18,7 +18,7 @@ jobs:
 
         if: contains('${{ github.event.pull_request.head.ref }}', 'IN-PROGRESS')
           - name: PR IN-PROGRESS
-              run: exit 1
+            run: exit 1
     ##- name: PR IN-PROGRESS
     ##        run: exit 1
 
