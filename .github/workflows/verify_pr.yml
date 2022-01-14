@@ -6,13 +6,12 @@ name: Verify PR
     #types: [push, pull_request,edited]
 #    branches:
 #      ["main", "develop"]
-
+###
 on:
   push:
     branches: [ main ]
   pull_request:
     branches: [ main ]
-
 jobs:
   pr-naming-rules:
     runs-on: ubuntu-latest
