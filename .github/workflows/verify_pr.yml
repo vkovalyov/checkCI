@@ -13,6 +13,14 @@ on:
   pull_request:
     branches: [ main ]
 jobs:
+  cancel previous workflow  this pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.9.1
+        with:
+          access_token: ${{ github.token }}
+
   pr-naming-rules:
     runs-on: ubuntu-latest
     steps:
