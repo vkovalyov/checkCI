@@ -2,7 +2,7 @@ name: Verify PR
 
 on:
   pull_request:
-    types: [opened, edited,synchronize ,reopened]
+    types: [opened, edited,push ,reopened]
     branches:
       ["main", "develop"]
 
