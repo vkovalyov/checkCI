@@ -1,4 +1,4 @@
-name: CI build
+name: CIbuild
 
 on:
   pull_request:
@@ -6,11 +6,24 @@ on:
     branches:
       - "main"
 
+
 jobs:
-  job1:
+  pr-naming-rules:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: deepakputhraya/action-pr-title@master
+        with:
+          regex: 'ITRAPP-\d+'
+          max_length: 50
+
+  after-success-pr-name:
+    needs: pr-naming-rules
     uses: vkovalyov/checkCI/.github/workflows/notify.yml@main
-    with:
-      username: mona
-#ccc
-#  call-workflow:
-#    uses: octo-org/example-repo/.github/workflows/workflow-A.yml@v1
+
+ #     if: ${{ success() }}
+ #     uses: vkovalyov/checkCI/.github/workflows/notify.yml@main
+#jobs:
+#  job1:
+#    uses: vkovalyov/checkCI/.github/workflows/notify.yml@main
+#    with:
+#      username: mona

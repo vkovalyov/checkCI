@@ -1,11 +1,9 @@
 name: CI notify
 
 on:
-  workflow_call:
-    inputs:
-      username:
-        required: false
-        type: string
+  workflow_run:
+    workflows: [CIbuild]
+    types: [completed]
 
 jobs:
   notify:
