@@ -12,14 +12,14 @@ on:
     branches: [ main ]
 
 jobs:
-#  label_issue:
-#    runs-on: ubuntu-latest
-#    steps:
-#      - env:
-#          GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}
-#          ISSUE_URL: ${{ github.event.issue.html_url }}
-#        run: |
-#          gh issue edit $ISSUE_URL --add-label "triage"
+  label_issue:
+    runs-on: ubuntu-latest
+    steps:
+      - env:
+          GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}
+          ISSUE_URL: ${{ github.event.issue.html_url }}
+        run: |
+          gh issue edit $ISSUE_URL --add-label "need approve"
   cancel-previous-workflow-this-pr:
     runs-on: ubuntu-latest
     steps:
