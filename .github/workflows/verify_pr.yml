@@ -9,11 +9,11 @@ on:
 jobs:
   pr-naming-rules:
     runs-on: ubuntu-latest
-    if: "!contains(github.event.pull_request.head, 'IN-PROGRESS')"
+    if: "!contains(github.event.pull_request.head.ref, 'IN-PROGRESS')"
     steps:
       - name: Pull request's name is
         run: |
-          echo ": ${{ github.event.pull_request.head }}"
+          echo ": ${{ github.event.pull_request.head.ref }}"
 
   branch-naming-rules:
     needs: pr-naming-rules
