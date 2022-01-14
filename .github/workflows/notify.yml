@@ -7,46 +7,10 @@ on:
         required: false
         type: string
 jobs:
-  branch-naming-rules:
-    name: branch naming
+  notify:
     runs-on: ubuntu-latest
     steps:
-      - uses: deepakputhraya/action-branch-name@master
+      - uses: deepakputhraya/action-pr-title@master
         with:
           regex: 'ITRAPP-\d+'
-          ignore: master
           max_length: 50
-  lint:
-    needs: branch-naming-rules
-    name: code style
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout source code
-        uses: actions/checkout@v2
-      - name: Install Flutter
-        uses: subosito/flutter-action@v1
-        with:
-          channel: 'stable'
-      - name: Get packages in a Flutter project
-        run: flutter pub get
-      - name: Run lint
-        run: dart analyze
-  run-tests:
-    needs: lint
-    name: Run tests
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-      - uses: subosito/flutter-action@v1
-      - name: Run tests
-        run: |
-          flutter test
-  build-server:
-    needs: run-tests
-    name: Build Server
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-      - uses: subosito/flutter-action@v1
-      - run: dart pub get
-      - run: build dart compile exe bin/itrapp_backend.dart -o itrapp_backend
