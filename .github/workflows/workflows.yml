@@ -1,9 +1,10 @@
 name: Verify PR
 
 on:
-  pull_request:
-    branches:
-      - "main"
+  workflow_call:
+    secrets:
+      token:
+        required: true
 
 jobs:
   branch-naming-rules:
