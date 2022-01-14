@@ -15,6 +15,12 @@ jobs:
         with:
           regex: 'ITRAPP-\d+'
           max_length: 50
+
+  after-success-pr-name:
+    needs: branch-naming-rules
+    name: start check project
+    uses: vkovalyov/checkCI/.github/workflows/notify.yml@main
+
  #     if: ${{ success() }}
  #     uses: vkovalyov/checkCI/.github/workflows/notify.yml@main
 #jobs:
