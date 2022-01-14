@@ -8,10 +8,7 @@ on:
 
 jobs:
   job1:
-    uses: vkovalyov/checkCI/.github/workflows/notify.yml@v1
+    uses: ./.github/workflows/notify.yml@v1
 
-  job2:
-    runs-on: ubuntu-latest
-    needs: job1
-    steps:
-      - run: echo ${{ needs.job1.outputs.firstword }} ${{ needs.job1.outputs.secondword }}
+#  call-workflow:
+#    uses: octo-org/example-repo/.github/workflows/workflow-A.yml@v1
