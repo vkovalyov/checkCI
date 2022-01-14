@@ -25,23 +25,6 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
-
-def installGitHook () {
-//val installGitHook(type: Copy) {
-    val sourceDir = File(rootProject.rootDir, '../.github/scripts/pre-hooks/pre-commit')
-    val targetDir = File(rootProject.rootDir, '.git/hooks')
-    from(sourceDir)
-    into(targetDir)
-    fileMode = 775
-}
-
-installGitHook()
-
-//tasks.getByPath(':app:preBuild').dependsOn(installGitHook)
-
-
-
-
 android {
     compileSdkVersion flutter.compileSdkVersion
 
