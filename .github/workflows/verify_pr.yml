@@ -88,6 +88,7 @@ jobs:
           PR: ${{ github.event.pull_request.html_url }}
         run: |
           gh pr edit $PR --add-label 'need approve'
+          gh pr comment $PR --body '@vkovalyov  What do you think about these updates?'
 
   build-server:
     needs: run-tests
