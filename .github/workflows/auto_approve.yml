@@ -12,3 +12,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ADD_LABEL: "approved"
           REMOVE_LABEL: "awaiting review"
+        run: |
+            gh pr comment $PR --body 'You can merge this PR'
