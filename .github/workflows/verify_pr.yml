@@ -1,10 +1,6 @@
 name: Verify PR
 
-#    branches:
-#      ["main", "develop"]
 on:
-  #  pull_request:
-  #    types: [opened, edited,synchronize ,reopened]
   push:
     branches: [ main ]
   pull_request:
@@ -13,13 +9,6 @@ on:
 
 jobs:
 
-  cancel-previous-workflow-this-pr:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Cancel Previous Runs
-        uses: styfle/cancel-workflow-action@0.9.1
-        with:
-          access_token: ${{ github.token }}
 
   pr-naming-rules:
     runs-on: ubuntu-latest
