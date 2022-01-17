@@ -83,7 +83,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR: ${{ github.event.pull_request.html_url }}
         run: |
-          gh pr edit $PR --add-label 'need approve'
+          gh pr edit $PR --add-label 'awaiting review'
           gh pr comment $PR --body '@vkovalyov  What do you think about these updates?'
 
   build-server:
