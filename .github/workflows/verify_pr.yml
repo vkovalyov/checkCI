@@ -8,8 +8,6 @@ on:
     branches: [ main ]
 
 jobs:
-
-
   pr-naming-rules:
     runs-on: ubuntu-latest
     steps:
@@ -18,7 +16,6 @@ jobs:
           regex: 'ITRAPP-\d+'
           disallowed_prefixes: '[IN-PROGRESS]'
           max_length: 50
-
   branch-naming-rules:
     needs: pr-naming-rules
     name: branch naming
