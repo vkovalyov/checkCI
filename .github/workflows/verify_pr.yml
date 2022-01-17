@@ -11,6 +11,7 @@ on:
     types: [opened, edited,synchronize ,reopened]
     branches: [ main ]
 
+
 jobs:
   cancel-previous-workflow-this-pr:
     runs-on: ubuntu-latest
