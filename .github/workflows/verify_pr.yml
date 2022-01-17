@@ -8,6 +8,14 @@ on:
     branches: [ main ]
 
 jobs:
+  cancel-previous-workflow-this-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.9.1
+        with:
+          access_token: ${{ github.token }}
+
   pr-naming-rules:
     runs-on: ubuntu-latest
     steps:
@@ -16,6 +24,7 @@ jobs:
           regex: 'ITRAPP-\d+'
           disallowed_prefixes: '[IN-PROGRESS]'
           max_length: 50
+
   branch-naming-rules:
     needs: pr-naming-rules
     name: branch naming
