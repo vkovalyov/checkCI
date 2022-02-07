@@ -37,23 +37,6 @@ jobs:
 
   lint:
     needs: branch-naming-rules
-    before_script:
-      # Install ssh-agent if not already installed, it is required by Docker.
-      # (change apt-get to yum if you use a CentOS-based image)
-      - 'which ssh-agent || ( apk add --update openssh )'
-
-      # Add bash
-      - apk add --update bash
-
-      # Add git
-      - apk add --update git
-
-      # Run ssh-agent (inside the build environment)
-      - eval $(ssh-agent -s)
-
-      # Add the SSH key stored in SSH_PRIVATE_KEY variable to the agent store
-      - echo "TOKEN"
-      - echo "TOKEN" | ssh-add -
     name: code style
     runs-on: ubuntu-latest
     steps:
@@ -63,10 +46,10 @@ jobs:
         uses: subosito/flutter-action@v1
         with:
           channel: 'stable'
-  #    - name: ssh-agent
- #       uses: webfactory/ssh-agent@v0.5.4
-  #      with:
-  #        ssh-private-key: ${{ secrets.TOKEN }}
+      - name: ssh-agent
+        uses: webfactory/ssh-agent@v0.5.4
+        with:
+          ssh-private-key: ${{ secrets.TOKEN }}
       - name: Get packages in a Flutter project
         run: flutter pub get
       - name: Run lint
