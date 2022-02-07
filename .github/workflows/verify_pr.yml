@@ -16,12 +16,14 @@ jobs:
           access_token: ${{ github.token }}
 
   resources:
-    - name: repo
-      type: git
-      source:
-        uri: git@github.com:itrapp-develop/itrapp-models.git
-        branch: main
-        private_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: repo
+        type: git
+        source:
+          uri: git@github.com:itrapp-develop/itrapp-models.git
+          branch: main
+          private_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
   lint:
     name: code style
     runs-on: ubuntu-latest
