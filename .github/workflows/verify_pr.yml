@@ -38,9 +38,9 @@ jobs:
         with:
           channel: 'stable'
       - name: Get packages in a Flutter project
-      - uses: webfactory/ssh-agent@v0.2.0
-        with:
-          ssh-private-key: ${{ secrets.REP_TOKEN }}
+   #   - uses: webfactory/ssh-agent@v0.2.0
+   #     with:
+  #        ssh-private-key: ${{ secrets.REP_TOKEN }}
         run: flutter pub get
       - name: Run lint
         run: dart analyze
