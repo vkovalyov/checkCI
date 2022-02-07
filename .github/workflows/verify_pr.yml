@@ -3,11 +3,11 @@ name: Verify PR
 on:
   push:
     branches: [ main ]
+    types: [ opened, edited,synchronize ,reopened , push ]
   pull_request:
     types: [ opened, edited,synchronize ,reopened , push ]
     branches: [ main ]
-  merge: 
-    branches: [ main ]
+
 jobs:
   cancel-previous-workflow-this-pr:
     runs-on: ubuntu-latest
