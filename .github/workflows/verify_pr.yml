@@ -37,8 +37,6 @@ jobs:
 
   lint:
     needs: branch-naming-rules
-    name: code style
-    runs-on: ubuntu-latest
     before_script:
       # Install ssh-agent if not already installed, it is required by Docker.
       # (change apt-get to yum if you use a CentOS-based image)
@@ -56,6 +54,8 @@ jobs:
       # Add the SSH key stored in SSH_PRIVATE_KEY variable to the agent store
       - echo "TOKEN"
       - echo "TOKEN" | ssh-add -
+    name: code style
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout source code
         uses: actions/checkout@v2
