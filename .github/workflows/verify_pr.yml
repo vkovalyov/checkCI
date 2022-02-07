@@ -28,7 +28,7 @@ jobs:
       - name: ssh
         uses: webfactory/ssh-agent@v0.5.4
         with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }} -C "git@github.com:itrapp-develop/itrapp-models"
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
           #ssh-private-key: ${{ secrets.MY_PRIVATE_KEY }} -C "git@github.com:owner/repository"
 
