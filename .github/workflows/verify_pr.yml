@@ -23,6 +23,7 @@ jobs:
         with:
           disallowed_prefixes: '[IN-PROGRESS]'
           max_length: 50
+          github_token: ${{ github.token }}
 
   branch-naming-rules:
     if: github.event != 'pull_request'
