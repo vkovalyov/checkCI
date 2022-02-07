@@ -46,10 +46,12 @@ jobs:
         uses: subosito/flutter-action@v1
         with:
           channel: 'stable'
+      - name: ssh-agent
+        uses: webfactory/ssh-agent@v0.5.4
+        with:
+          ssh-private-key: ${{ secrets.TOKEN }}
       - name: Get packages in a Flutter project
         run: flutter pub get
-        with:
-          repo-token: ${{ secrets.TOKEN }}
       - name: Run lint
         run: dart analyze
 
