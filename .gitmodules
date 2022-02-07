@@ -1,0 +1,3 @@
+[submodule "itrapp-models"]
+	path = itrapp-models
+	url = git@github.com:itrapp-develop/itrapp-models.git
