@@ -40,9 +40,6 @@ jobs:
     name: code style
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/labeler@v2
-        with:
-          repo-token: ${{ secrets.TOKEN }}
       - name: Checkout source code
         uses: actions/checkout@v2
       - name: Install Flutter
@@ -50,6 +47,8 @@ jobs:
         with:
           channel: 'stable'
       - name: Get packages in a Flutter project
+        with:
+          repo-token: ${{ secrets.TOKEN }}
         run: flutter pub get
       - name: Run lint
         run: dart analyze
