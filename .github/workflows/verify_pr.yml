@@ -25,20 +25,20 @@ jobs:
 #          max_length: 50
 #          github_token: ${{ github.token }}
 
-  branch-naming-rules:
+#  branch-naming-rules:
   #  if: github.event != 'pull_request'
   #  needs: pr-naming-rules
-    name: branch naming
-    runs-on: ubuntu-latest
-    steps:
-      - uses: deepakputhraya/action-branch-name@master
-        with:
-          regex: 'ITRAPP-\d+'
-          ignore: master
-          max_length: 50
+ #   name: branch naming
+#    runs-on: ubuntu-latest
+#    steps:
+ #     - uses: deepakputhraya/action-branch-name@master
+  #      with:
+   #       regex: 'ITRAPP-\d+'
+    #      ignore: master
+      #    max_length: 50
 
   lint:
-    needs: branch-naming-rules
+   # needs: branch-naming-rules
     name: code style
     runs-on: ubuntu-latest
     steps:
