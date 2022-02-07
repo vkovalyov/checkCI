@@ -27,7 +27,7 @@ jobs:
 
   branch-naming-rules:
   #  if: github.event != 'pull_request'
-    needs: pr-naming-rules
+  #  needs: pr-naming-rules
     name: branch naming
     runs-on: ubuntu-latest
     steps:
