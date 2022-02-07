@@ -27,7 +27,7 @@ jobs:
 
           repository: itrapp-develop/itrapp-models
           token: ${{ secrets.REPOSITORY_TOKEN }} # `GH_PAT` is a secret that contains your PAT
-          path: main
+          branch: main
       #      - name: ssh-agent
 #        uses: webfactory/ssh-agent@v0.5.4
 #        with:
