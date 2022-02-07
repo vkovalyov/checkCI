@@ -15,38 +15,13 @@ jobs:
         with:
           access_token: ${{ github.token }}
 
-  pr-naming-rules:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: deepakputhraya/action-pr-title@master
-        with:
-          regex: 'ITRAPP-\d+'
-          disallowed_prefixes: '[IN-PROGRESS]'
-          max_length: 50
-
-  branch-naming-rules:
-    needs: pr-naming-rules
-    name: branch naming
-    runs-on: ubuntu-latest
-    steps:
-      - uses: deepakputhraya/action-branch-name@master
-        with:
-          regex: 'ITRAPP-\d+'
-          ignore: master
-          max_length: 50
-
   lint:
-    needs: branch-naming-rules
     name: code style
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source code
         uses: actions/checkout@v2
-      - name: Checkout private tools
-        uses: actions/checkout@v2
-        with:
-          repository: itrapp-develop/itrapp-models
-          token: ${{ secrets.ACTIONS_DEPLOY_KEY}}
+
       #      - name: ssh-agent
 #        uses: webfactory/ssh-agent@v0.5.4
 #        with:
@@ -55,6 +30,7 @@ jobs:
         uses: subosito/flutter-action@v1
         with:
           channel: 'stable'
+          ssh-private-key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
       - name: Get packages in a Flutter project
         run: flutter pub get
       - name: Run lint
