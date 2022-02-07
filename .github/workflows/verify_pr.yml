@@ -49,7 +49,7 @@ jobs:
       - name: ssh-agent
         uses: webfactory/ssh-agent@v0.5.4
         with:
-          ssh-private-key: ${{ secrets.TOKEN }}
+          ssh-private-key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
       - name: Get packages in a Flutter project
         run: flutter pub get
       - name: Run lint
