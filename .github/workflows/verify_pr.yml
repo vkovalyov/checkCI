@@ -21,7 +21,12 @@ jobs:
     steps:
       - name: Checkout source code
         uses: actions/checkout@v2
-
+      - name: Checkout private tools
+        uses: actions/checkout@v2
+        with:
+          repository: itrapp-develop/itrapp-models
+          token: ${{ secrets.ACTIONS_DEPLOY_KEY }} # `GH_PAT` is a secret that contains your PAT
+          path: my-tools
       #      - name: ssh-agent
 #        uses: webfactory/ssh-agent@v0.5.4
 #        with:
@@ -30,8 +35,6 @@ jobs:
         uses: subosito/flutter-action@v1
         with:
           channel: 'stable'
-          ssh-private-key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-          token: ${{ github.token }}
       - name: Get packages in a Flutter project
         run: flutter pub get
       - name: Run lint
