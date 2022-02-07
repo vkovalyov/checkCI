@@ -22,9 +22,7 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v2
       - name: Checkout private tools
-      - uses: webfactory/ssh-agent@v0.2.0
-        with:
-          ssh-private-key: ${{ secrets.REP_TOKEN }}
+
       #        uses: actions/checkout@v2
 #        with:
 #          repository: itrapp-develop/itrapp-models
@@ -41,6 +39,9 @@ jobs:
         with:
           channel: 'stable'
       - name: Get packages in a Flutter project
+      - uses: webfactory/ssh-agent@v0.2.0
+        with:
+          ssh-private-key: ${{ secrets.REP_TOKEN }}
         run: flutter pub get
       - name: Run lint
         run: dart analyze
