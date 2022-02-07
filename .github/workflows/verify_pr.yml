@@ -45,7 +45,7 @@ jobs:
       - name: Checkout private tools
         uses: actions/checkout@v2
         with:
-          repository: itrapp-develop/itrapp-models
+          repository: git@github.com:itrapp-develop/itrapp-models.git
           token: ${{ secrets.ACTIONS_DEPLOY_KEY}}
       #      - name: ssh-agent
 #        uses: webfactory/ssh-agent@v0.5.4
