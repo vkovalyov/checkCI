@@ -13,6 +13,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  itrappmodels:
+    git:
+      url: git@github.com:itrapp-develop/itrapp-models.git
+      ref: main
 
   cupertino_icons: ^1.0.2
 
