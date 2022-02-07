@@ -25,9 +25,9 @@ jobs:
         uses: actions/checkout@v2
         with:
 
-          repository: itrapp-develop/itrapp-models
+          repository: itrapp-develop/itrapp-models@main
           token: ${{ secrets.REPOSITORY_TOKEN }} # `GH_PAT` is a secret that contains your PAT
-          branch: main
+
       #      - name: ssh-agent
 #        uses: webfactory/ssh-agent@v0.5.4
 #        with:
