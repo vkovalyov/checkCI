@@ -31,6 +31,7 @@ jobs:
         with:
           channel: 'stable'
           ssh-private-key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          token: ${{ github.token }}
       - name: Get packages in a Flutter project
         run: flutter pub get
       - name: Run lint
