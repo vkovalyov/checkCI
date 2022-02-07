@@ -40,8 +40,9 @@ jobs:
     name: code style
     runs-on: ubuntu-latest
     steps:
-      with:
-        repo-token: ${{ secrets.TOKEN }}
+      - uses: actions/labeler@v2
+        with:
+          repo-token: ${{ secrets.TOKEN }}
       - name: Checkout source code
         uses: actions/checkout@v2
       - name: Install Flutter
