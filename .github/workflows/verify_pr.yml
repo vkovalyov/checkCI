@@ -21,7 +21,6 @@ jobs:
     steps:
       - name: Checkout source code
         uses: actions/checkout@v2
-      - name: Checkout private tools
 
       #        uses: actions/checkout@v2
 #        with:
