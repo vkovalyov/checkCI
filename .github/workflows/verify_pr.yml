@@ -26,8 +26,8 @@ jobs:
         with:
 
           repository: itrapp-develop/itrapp-models
-          token: ${{ secrets.GITHUB_TOKEN }} # `GH_PAT` is a secret that contains your PAT
-          path: my-tools
+          token: ${{ secrets.REPOSITORY_TOKEN }} # `GH_PAT` is a secret that contains your PAT
+         # path: my-tools
       #      - name: ssh-agent
 #        uses: webfactory/ssh-agent@v0.5.4
 #        with:
