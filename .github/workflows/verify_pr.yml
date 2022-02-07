@@ -15,15 +15,6 @@ jobs:
         with:
           access_token: ${{ github.token }}
 
-  resources:
-    runs-on: ubuntu-latest
-    steps:
-      - name: repo
-        type: git
-        source:
-          uri: git@github.com:itrapp-develop/itrapp-models.git
-          branch: main
-          private_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
   lint:
     name: code style
     runs-on: ubuntu-latest
@@ -35,9 +26,9 @@ jobs:
         with:
           channel: 'stable'
       - name: ssh
-        uses: webfactory/ssh-agent@v0.4.1
+        uses: webfactory/ssh-agent@v0.5.4
         with:
-          ssh-private-key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          ssh-private-key: ${{ secrets.KEY_RSA }}
 
       - name: Get packages in a Flutter project
         run: flutter pub get
