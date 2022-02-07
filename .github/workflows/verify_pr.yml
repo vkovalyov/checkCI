@@ -25,7 +25,7 @@ jobs:
           max_length: 50
 
   branch-naming-rules:
-    if: github.event != 'push'
+    if: github.event != 'merge'
     needs: pr-naming-rules
     name: branch naming
     runs-on: ubuntu-latest
