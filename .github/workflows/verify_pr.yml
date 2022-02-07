@@ -22,11 +22,14 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v2
       - name: Checkout private tools
-        uses: actions/checkout@v2
+      - uses: webfactory/ssh-agent@v0.2.0
         with:
-          repository: itrapp-develop/itrapp-models
-          ref: main
-          token: ${{ secrets.REP_TOKEN }} # `GH_PAT` is a secret that contains your PAT
+          ssh-private-key: ${{ secrets.REP_TOKEN }}
+      #        uses: actions/checkout@v2
+#        with:
+#          repository: itrapp-develop/itrapp-models
+#          ref: main
+#          token: ${{ secrets.REP_TOKEN }} # `GH_PAT` is a secret that contains your PAT
 
 
       #      - name: ssh-agent
