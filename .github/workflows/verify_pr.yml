@@ -16,6 +16,7 @@ jobs:
           access_token: ${{ github.token }}
 
   lint:
+    timeout: 1 minutes
     name: code style
     runs-on: ubuntu-latest
     steps:
