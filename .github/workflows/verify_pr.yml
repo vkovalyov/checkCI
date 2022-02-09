@@ -17,26 +17,29 @@ jobs:
 
   lint:
     timeout-minutes: 1
-    name: code style
+    name: Code style
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source code
         uses: actions/checkout@v2
-
-      #      - name: ssh-agent
-#        uses: webfactory/ssh-agent@v0.5.4
-#        with:
-#          ssh-private-key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
       - name: Install Flutter
         uses: subosito/flutter-action@v1
-  #      with:
-  #        channel: 'stable'
-  #        ssh-private-key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-  #        token: ${{ github.token }}
+        with:
+          channel: 'stable'
       - name: Get packages in a Flutter project
         run: flutter pub get
       - name: Run lint
         run: dart analyze
+
+     # - name: Checkout source code
+     #   uses: actions/checkout@v2
+      #      - name: ssh-agent
+#        uses: webfactory/ssh-agent@v0.5.4
+#        with:
+#          ssh-private-key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+  #        ssh-private-key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+  #        token: ${{ github.token }}
+
 
 
   run-tests:
