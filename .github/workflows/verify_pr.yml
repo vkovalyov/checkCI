@@ -16,7 +16,7 @@ jobs:
           access_token: ${{ github.token }}
 
   lint:
-    timeout-minutes: 1
+    timeout-minutes: 10
     name: Code style
     runs-on: ubuntu-latest
     steps:
@@ -26,6 +26,12 @@ jobs:
         uses: subosito/flutter-action@v1
         with:
           channel: 'stable'
+      - name: Checkout SSH
+        uses: webfactory/ssh-agent@v0.5.4
+        with:
+          ssh-private-key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          #        ssh-private-key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          #        token: ${{ github.token }}
       - name: Get packages in a Flutter project
         run: flutter pub get
       - name: Run lint
