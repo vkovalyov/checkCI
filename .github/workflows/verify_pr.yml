@@ -16,32 +16,40 @@ jobs:
           access_token: ${{ github.token }}
 
   lint:
-    name: code style
+    timeout-minutes: 10
+    name: Code style
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source code
         uses: actions/checkout@v2
-      - name: Checkout private tools
-        uses: actions/checkout@v2
-        with:
-          repository: itrapp-develop/itrapp-models
-          token: ${{ secrets.ACTIONS_DEPLOY_KEY }} # `GH_PAT` is a secret that contains your PAT
-          path: my-tools
-      #      - name: ssh-agent
-#        uses: webfactory/ssh-agent@v0.5.4
-#        with:
-#          ssh-private-key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
       - name: Install Flutter
         uses: subosito/flutter-action@v1
         with:
           channel: 'stable'
+      - name: Checkout SSH
+        uses: webfactory/ssh-agent@v0.5.4
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY_PRIVATE }}
+          #        ssh-private-key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          #        token: ${{ github.token }}
       - name: Get packages in a Flutter project
         run: flutter pub get
       - name: Run lint
         run: dart analyze
 
+     # - name: Checkout source code
+     #   uses: actions/checkout@v2
+      #      - name: ssh-agent
+#        uses: webfactory/ssh-agent@v0.5.4
+#        with:
+#          ssh-private-key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+  #        ssh-private-key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+  #        token: ${{ github.token }}
+
+
 
   run-tests:
+    timeout-minutes: 1
     needs: lint
     name: Run tests
     runs-on: ubuntu-latest
