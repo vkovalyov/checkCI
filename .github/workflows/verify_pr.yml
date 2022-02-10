@@ -30,30 +30,21 @@ jobs:
         uses: webfactory/ssh-agent@v0.5.4
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY_PRIVATE }}
-          #        ssh-private-key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-          #        token: ${{ github.token }}
       - name: Get packages in a Flutter project
         run: flutter pub get
       - name: Run lint
         run: dart analyze
 
-     # - name: Checkout source code
-     #   uses: actions/checkout@v2
-      #      - name: ssh-agent
-#        uses: webfactory/ssh-agent@v0.5.4
-#        with:
-#          ssh-private-key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-  #        ssh-private-key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-  #        token: ${{ github.token }}
-
-
-
   run-tests:
-    timeout-minutes: 1
+    timeout-minutes: 10
     needs: lint
     name: Run tests
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout SSH
+        uses: webfactory/ssh-agent@v0.5.4
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY_PRIVATE }}
       - uses: actions/checkout@v1
       - uses: subosito/flutter-action@v1
       - name: Run tests
