@@ -9,13 +9,14 @@ on:
 jobs:
   lint:
     timeout-minutes: 10
+    needs: branchNamingRules
     name: Code style
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source code
-        uses: actions/checkout@v2
-      - name: Install Dart
-        uses: dart-lang/setup-dart@v1
+        uses: actions/checkout@v3
+      - name: Install Flutter
+        uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
       - name: Checkout SSH
@@ -23,12 +24,12 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY_FOR_MODELS }}
       - name: Get packages in a Flutter project
-        run: dart pub get
+        run: flutter pub get
       - name: Run lint
         run: dart analyze
 
   runTests:
-    timeout-minutes: 10
+    timeout-minutes: 30
     needs: lint
     name: Run tests and get coverage
     runs-on: ubuntu-latest
@@ -37,11 +38,10 @@ jobs:
         uses: webfactory/ssh-agent@v0.5.4
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY_FOR_MODELS }}
-      - uses: actions/checkout@v1
-      - uses: dart-lang/setup-dart@v1
+      - uses: actions/checkout@v3
+      - uses: subosito/flutter-action@v2
       - name: Run tests
-        run: |
-          dart test
+        run: flutter test
 
   buildServer:
     timeout-minutes: 10
@@ -53,10 +53,10 @@ jobs:
         uses: webfactory/ssh-agent@v0.5.4
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY_FOR_MODELS }}
-      - uses: actions/checkout@v1
-      - uses: dart-lang/setup-dart@v1
+      - uses: actions/checkout@v3
+      - uses: subosito/flutter-action@v2
       - run: dart pub get
-      - run: dart compile kernel bin/itrapp_backend.dart
+      - run: flutter build web
 
   addLabelReadyForMerge:
     timeout-minutes: 3
