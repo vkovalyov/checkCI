@@ -1,42 +1,14 @@
 name: after_approve_action
 
-# Only trigger, when the build workflow succeeded
 on:
   workflow_run:
-    workflows: ["pull_request_review"]
+    workflows: [Add Review Label]
     types:
       - completed
 
 jobs:
-  cancelPreviousWorkflow:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Cancel Previous Runs
-        uses: styfle/cancel-workflow-action@0.9.1
-        with:
-          access_token: ${{ github.token }}
-
-  prNamingRules:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: deepakputhraya/action-pr-title@master
-        with:
-          regex: 'ITRAPP-\d+'
-          disallowed_prefixes: '[IN-PROGRESS]'
-
-  branchNamingRules:
-    needs: prNamingRules
-    name: branch naming
-    runs-on: ubuntu-latest
-    steps:
-      - uses: deepakputhraya/action-branch-name@master
-        with:
-          regex: 'ITRAPP-\d+'
-          ignore: master
-
   lint:
     timeout-minutes: 10
-    needs: branchNamingRules
     name: Code style
     runs-on: ubuntu-latest
     steps:
