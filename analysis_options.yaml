@@ -3,9 +3,6 @@ include: package:flutter_lints/flutter.yaml
 analyzer:
   errors:
     import_of_legacy_library_into_null_safe: ignore
-
-  enable-experiment:
-    - non-nullable
   plugins:
     - dart_code_metrics
   exclude:
