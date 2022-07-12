@@ -2,7 +2,7 @@ name: after_approve_action
 
 on:
   workflow_run:
-    workflows: [Add Review Label]
+    workflows: [Add Review Labelsss]
     types:
       - completed
 
