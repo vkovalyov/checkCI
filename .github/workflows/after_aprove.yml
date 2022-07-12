@@ -1,9 +1,8 @@
 name: after_approve_action
 
-# Only trigger, when the build workflow succeeded
 on:
   workflow_run:
-    workflows: ["pull_request_review"]
+    workflows: [Label approved pull requests]
     types:
       - completed
 
