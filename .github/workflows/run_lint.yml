@@ -22,3 +22,4 @@ jobs:
       - name: Get packages in a Flutter project
         run: flutter pub get
       - name: Run lint
+        run: dart analyze
