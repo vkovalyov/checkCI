@@ -2,7 +2,7 @@ name: format code
 
 on:
   pull_request:
-    types: [ opened, edited, ]
+    types: [ opened, edited ]
   workflow_dispatch:
 
 jobs:
@@ -21,10 +21,7 @@ jobs:
         run: flutter pub get
       - name: Verify formatting
         run: dart format .
-
-      - name: "Run if changes have been detected"
-        if: steps.auto-commit-action.outputs.changes_detected == 'true'
+      - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: Apply dart format changes
-
