@@ -26,7 +26,6 @@ jobs:
         uses: webfactory/ssh-agent@v0.5.4
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY_FOR_MODELS }}
-      - name: Get packages in a Flutter project
       - name: build
       - run: dart pub get
       - run: flutter build web
