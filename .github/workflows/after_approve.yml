@@ -33,6 +33,8 @@ jobs:
         run: flutter pub get
       - name: Run lint
         run: dart analyze
+      - name: Verify formatting
+        run: dart format  #--output=none --set-exit-if-changed .
 
   runTests:
     timeout-minutes: 30
