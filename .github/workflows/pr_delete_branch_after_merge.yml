@@ -1,4 +1,4 @@
-name: delete_branch_after_merge
+name: [PR] delete_branch_after_merge
 on:
   pull_request:
     types:
