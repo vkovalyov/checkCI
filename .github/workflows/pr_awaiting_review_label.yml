@@ -1,4 +1,4 @@
-name: awaiting_review_label
+name: [PR] awaiting_review_label
 
 on:
   pull_request:
