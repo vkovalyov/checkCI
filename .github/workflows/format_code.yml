@@ -8,7 +8,7 @@ on:
 jobs:
   format_code:
     timeout-minutes: 10
-    name: format_code
+    name: Code style
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source code
@@ -19,8 +19,14 @@ jobs:
         uses: subosito/flutter-action@v1
         with:
           channel: 'stable'
+#      - name: Checkout SSH
+#        uses: webfactory/ssh-agent@v0.5.4
+#        with:
+#          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY_FOR_MODELS }}
       - name: Get packages in a Flutter project
         run: flutter pub get
+      - name: Run lint
+        run: dart analyze
       - name: Verify formatting
         run: dart format .
       - name: Commit changes
