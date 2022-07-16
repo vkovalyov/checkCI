@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 
 
+
+
+
+
+
+
 void main() {
   runApp(const MyApp());
 }
@@ -17,7 +23,7 @@ class MyApp extends StatelessWidget {
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
-  }//wferfwferfvv
+  } //wferfwferfvv
 }
 //wefvwefvwefvsdfvwefvwefvwefvsdfvwefvwefvwefvsdfv
 //dsfvsdfvdsfveqrfwerfewewerfewrf
@@ -32,11 +38,12 @@ class MyHomePage extends StatefulWidget {
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
+
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
   void _incrementCounter() {
     setState(() {
- //     print('r');
+      //     print('r');
       _counter++;
     });
   }
