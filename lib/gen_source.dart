@@ -1,9 +1,1 @@
-
-class SourceGen {
-
-}
-
-
-
-
-
+class SourceGen {}
