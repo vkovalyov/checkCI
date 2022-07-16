@@ -1,5 +1,6 @@
 on: pull_request_review
-name: Add Review Label
+
+name: after approve action
 jobs:
   labelWhenApproved:
     name: 'Label when approved'
