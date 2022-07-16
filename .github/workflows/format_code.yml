@@ -21,13 +21,11 @@ jobs:
         run: flutter pub get
       - name: Verify formatting
         run: dart format .
-      - name: Commit changes
       - name: "Run if changes have been detected"
         if: steps.auto-commit-action.outputs.changes_detected == 'true'
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: Apply dart format changes
-
       - name: "Run if no changes have been detected"
         if: steps.auto-commit-action.outputs.changes_detected == 'false'
         run: echo "No Changes!"
