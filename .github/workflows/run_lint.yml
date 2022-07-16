@@ -1,12 +1,12 @@
-name: run lint-tests-build
+name: run lint
 
 on:
   workflow_dispatch:
 
 jobs:
-  lint-test-build:
+  lint:
     timeout-minutes: 30
-    name: lint-tets-build
+    name: lint
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source code
@@ -23,7 +23,3 @@ jobs:
         run: flutter pub get
       - name: Run lint
         run: dart analyze
-      - name: Run tests
-        run: flutter test
-      - run: dart pub get
-      - run: flutter build web

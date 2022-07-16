@@ -1,12 +1,12 @@
-name: run lint-tests-build
+name: run tests
 
 on:
   workflow_dispatch:
 
 jobs:
-  lint-test-build:
+  tests:
     timeout-minutes: 30
-    name: lint-tets-build
+    name: test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source code
@@ -21,9 +21,5 @@ jobs:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY_FOR_MODELS }}
       - name: Get packages in a Flutter project
         run: flutter pub get
-      - name: Run lint
-        run: dart analyze
       - name: Run tests
         run: flutter test
-      - run: dart pub get
-      - run: flutter build web
