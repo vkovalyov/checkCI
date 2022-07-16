@@ -19,4 +19,5 @@ jobs:
           channel: 'stable'
       - name: Get packages in a Flutter project
         run: flutter pub get
-
+      - name: Verify formatting
+        run: dart format .
