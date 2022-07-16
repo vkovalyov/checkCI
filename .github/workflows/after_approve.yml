@@ -38,7 +38,7 @@ jobs:
       - name: Verify formatting
         run: dart format .
       - name: Commit changes
-      - uses: stefanzweifel/git-auto-commit-action@v4
+        uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: Apply dart format changes
 
