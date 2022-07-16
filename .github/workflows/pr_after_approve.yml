@@ -13,16 +13,14 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ADD_LABEL: "approved"
           REMOVE_LABEL: "awaiting review"
-  lint:
-    needs: labelWhenApproved
-    timeout-minutes: 10
-    name: Code style
+
+  lint-test-build:
+    timeout-minutes: 30
+    name: lint-tets-build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source code
         uses: actions/checkout@v2
-        with:
-          ref: ${{ github.head_ref }}
       - name: Install Flutter
         uses: subosito/flutter-action@v1
         with:
@@ -35,34 +33,9 @@ jobs:
         run: flutter pub get
       - name: Run lint
         run: dart analyze
-
-  runTests:
-    timeout-minutes: 30
-    needs: lint
-    name: Run tests and get coverage
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout SSH
-        uses: webfactory/ssh-agent@v0.5.4
-        with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY_FOR_MODELS }}
-      - uses: actions/checkout@v1
-      - uses: subosito/flutter-action@v1
       - name: Run tests
-        run:  flutter test
-
-  buildServer:
-    timeout-minutes: 10
-    needs: runTests
-    name: check build Server
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout SSH
-        uses: webfactory/ssh-agent@v0.5.4
-        with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY_FOR_MODELS }}
-      - uses: actions/checkout@v1
-      - uses: subosito/flutter-action@v1
+        run: flutter test
+      - name: build
       - run: dart pub get
       - run: flutter build web
 
