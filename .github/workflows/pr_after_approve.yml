@@ -1,6 +1,6 @@
 on: pull_request_review
 
-name: [PR] after approve action
+name: PR - after approve action
 jobs:
   labelWhenApproved:
     name: 'Label when approved'
