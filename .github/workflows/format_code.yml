@@ -2,7 +2,8 @@ name: format code
 
 on:
   pull_request:
-    types: [ opened, edited,synchronize ,reopened ]
+    types: [ opened, edited ]
+  workflow_dispatch:
 
 jobs:
   format_code:
@@ -12,23 +13,15 @@ jobs:
     steps:
       - name: Checkout source code
         uses: actions/checkout@v2
-        with:
-          ref: ${{ github.head_ref }}
       - name: Install Flutter
         uses: subosito/flutter-action@v1
         with:
           channel: 'stable'
-      - name: Checkout SSH
-        uses: webfactory/ssh-agent@v0.5.4
-        with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY_FOR_MODELS }}
       - name: Get packages in a Flutter project
         run: flutter pub get
-      - name: Run lint
-        run: dart analyze
       - name: Verify formatting
         run: dart format .
       - name: Commit changes
-      - uses: stefanzweifel/git-auto-commit-action@v4
+        uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: Apply dart format changes
