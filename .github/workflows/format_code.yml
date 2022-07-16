@@ -3,7 +3,6 @@ name: format code
 on:
   pull_request:
     types: [ opened, edited,synchronize ,reopened ]
-    branches: [ develop ]
 
 jobs:
   format_code:
